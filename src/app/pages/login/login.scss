@@ -1,0 +1,63 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.left-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px;
+}
+
+.brand h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.brand p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.illustration {
+  margin: 50px 0;
+}
+
+.illustration img {
+  width: 320px;
+  max-width: 100%;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 18px;
+}
+
+.right-panel {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--background);
+  padding: 30px;
+}
+
+.app-card {
+  width: 420px;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: gray;
+}
