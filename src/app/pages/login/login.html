@@ -1,7 +1,7 @@
 <div class="login-page">
     <div class="left-panel">
         <div class="brand">
-            <h1>QuickBill</h1>
+            <h1>{{title}}</h1>
             <p>Billing Made Simple</p>
         </div>
         <div class="illustration">
@@ -23,8 +23,39 @@
             <p class="subtitle">
                 Sign In To continue To QuickBill
             </p>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-            --login form
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User ID/Email</mat-label>
+                    <input matInput formControlName="userId" placeholder="Enter User ID/Email">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Password</mat-label>
+
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+
+                    <button mat-icon-button matSuffix type="button" (click)="hidePassword=!hidePassword">
+
+                        <mat-icon>
+                            {{hidePassword ? 'visibility' : 'visibility_off'}}
+                        </mat-icon>
+
+                    </button>
+
+                </mat-form-field>
+
+                <mat-checkbox formControlName="rememberMe">
+                    Remember Me
+                </mat-checkbox>
+
+                <button mat-raised-button color="primary" class="full-width" type="submit">
+
+                    Login
+
+                </button>
+
+            </form>
         </mat-card>
     </div>
 
