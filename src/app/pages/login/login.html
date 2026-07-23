@@ -31,9 +31,9 @@
                     <mat-icon matPrefix>person</mat-icon>
                     <input matInput formControlName="userId" placeholder="Enter User ID/Email">
                     @if (loginForm.get('userId')?.touched && loginForm.get('userId')?.hasError('required')) {
-                        <mat-error>
-                            Enter User ID/Email Required
-                        </mat-error>
+                    <mat-error>
+                        Enter User ID/Email Required
+                    </mat-error>
                     }
                 </mat-form-field>
 
@@ -65,5 +65,9 @@
             </form>
         </mat-card>
     </div>
-
-</div>
+    <div class="footer-text">
+        Designed & Developed by
+        <a href="https://quickbill-silk.vercel.app" target="_blank">
+            MakSoft Solutions
+        </a>
+    </div>
