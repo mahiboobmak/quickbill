@@ -7,14 +7,22 @@
         <div class="illustration">
             <img src="assets/images/login-illustration.svg" alt="Billing Illustration">
         </div>
-        <div class="fetures">
-            <div>✔ GST Billing</div>
+        <div class="features">
+            <div class="feature-item">
+                <mat-icon>check_circle</mat-icon>
+                <span>GST Billing</span>
+            </div>
 
-            <div>✔ Customer Management</div>
+            <div class="feature-item">
+                <mat-icon>check_circle</mat-icon> <span>Customer Management</span>
+            </div>
 
-            <div>✔ Invoice Reports</div>
-
-            <div>✔ Secure Cloud Access</div>
+            <div class="feature-item">
+                <mat-icon>check_circle</mat-icon> <span>Invoice Reports</span>
+            </div>
+            <div class="feature-item">
+                <mat-icon>check_circle</mat-icon> <span>Secure Cloud Access</span>
+            </div>
         </div>
     </div>
     <div class="right-panel">
@@ -32,14 +40,14 @@
                     <input matInput formControlName="userId" placeholder="Enter User ID/Email">
                     @if (loginForm.get('userId')?.touched && loginForm.get('userId')?.hasError('required')) {
                     <mat-error>
-                        Enter User ID/Email Required
+                        ID/Email Required
                     </mat-error>
                     }
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Password</mat-label>
-
+                    <mat-icon matPrefix>lock</mat-icon>
                     <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
 
                     <button mat-icon-button matSuffix type="button" (click)="hidePassword=!hidePassword">
@@ -49,13 +57,18 @@
                         </mat-icon>
 
                     </button>
-
+                    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
+                    <mat-error>
+                        password Required
+                    </mat-error>
+                    }
                 </mat-form-field>
-
-                <mat-checkbox formControlName="rememberMe">
-                    Remember Me
-                </mat-checkbox>
-
+                <div class="login-options">
+                    <mat-checkbox formControlName="rememberMe">
+                        Remember Me
+                    </mat-checkbox>
+                    <a href="javascript:void(0)">Forgot Password</a>
+                </div>
                 <button mat-raised-button color="primary" class="full-width" type="submit">
 
                     Login
@@ -67,12 +80,12 @@
     </div>
 </div>
 <div class="footer-text">
-            QuickBill v1.0
-            <br>
-            © 2026 All Rights Reserved.
-            <br><br>
-            Powered by
-            <a href="https://quickbill-online.vercel.app" target="_blank">
-                MakSoft
-            </a>
+    QuickBill v1.0
+    <br>
+    © 2026 All Rights Reserved.
+    <br><br>
+    Powered by
+    <a href="https://quickbill-online.vercel.app" target="_blank">
+        MakSoft
+    </a>
 </div>
