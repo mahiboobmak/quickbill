@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../core/services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,8 @@ export class LoginComponent {
   title = "QuickBill";
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -58,11 +60,11 @@ export class LoginComponent {
         console.log(res);
 
         localStorage.setItem('token', res.token);
-        localStorage.setItem('fullName', res.fullName);
-        localStorage.setItem('role', res.role);
-        localStorage.setItem('tenantId', res.tenantId);
+localStorage.setItem('fullName', res.fullName);
+localStorage.setItem('role', res.role);
+localStorage.setItem('tenantId', res.tenantId);
 
-        alert('Login Successful MMM');
+this.router.navigate(['/welcome']);
       },
 
       error: (err) => {
@@ -76,4 +78,5 @@ export class LoginComponent {
     });
 
   }
+  
 }
