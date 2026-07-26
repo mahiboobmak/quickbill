@@ -62,7 +62,7 @@ export class LoginComponent {
         localStorage.setItem('role', res.role);
         localStorage.setItem('tenantId', res.tenantId);
 
-        alert('Login Successful');
+        alert('Login Successful MMM');
       },
 
       error: (err) => {
