@@ -35,14 +35,28 @@
             <form [formGroup]="loginForm" (ngSubmit)="login()">
 
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>User ID/Email</mat-label>
+                    <mat-label>Email</mat-label>
+
                     <mat-icon matPrefix>person</mat-icon>
-                    <input matInput formControlName="userId" placeholder="Enter User ID/Email">
-                    @if (loginForm.get('userId')?.touched && loginForm.get('userId')?.hasError('required')) {
+
+                    <input matInput type="email" formControlName="email" placeholder="Enter Email">
+
+                    @if (loginForm.get('email')?.touched &&
+                    loginForm.get('email')?.hasError('required')) {
+
                     <mat-error>
-                        ID/Email Required
+                        Email is required
                     </mat-error>
                     }
+
+                    @if (loginForm.get('email')?.touched &&
+                    loginForm.get('email')?.hasError('email')) {
+
+                    <mat-error>
+                        Enter a valid email
+                    </mat-error>
+                    }
+
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">

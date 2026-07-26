@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  FormBuilder,
+import {
+  FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators } from '@angular/forms';
+  Validators
+} from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { validate } from '@angular/forms/signals';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-login',
@@ -27,28 +29,51 @@ import { validate } from '@angular/forms/signals';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
+
 export class LoginComponent {
 
-  hidePassword =  true;
+  hidePassword = true;
   loginForm: FormGroup;
   title = "QuickBill";
-  constructor(private fb: FormBuilder)
-  {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
-      emial: ['',Validators.required,Validators.required],
-      password: ['',Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
       rememberMe: [false]
     });
   }
-login()
-{
-  if(this.loginForm.invalid)
-  {
-    this.loginForm.markAllAsTouched();
-    return;
-  }
+  login() {
 
-  console.log(this.loginForm.value);
-  console.log("hello");
-}
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+
+        console.log(res);
+
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('fullName', res.fullName);
+        localStorage.setItem('role', res.role);
+        localStorage.setItem('tenantId', res.tenantId);
+
+        alert('Login Successful');
+      },
+
+      error: (err) => {
+
+        console.log(err);
+
+        alert(err.error.message ||  'Invalid Email or Password');
+
+      }
+
+    });
+
+  }
 }
